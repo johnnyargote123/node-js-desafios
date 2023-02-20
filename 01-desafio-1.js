@@ -9,6 +9,7 @@ class ProductManager {
 
   addProduct = (title, description, price, thumbnail, code, stock) => {
     const product = {
+      id: this.products.length + 1,
       title: title,
       description: description,
       price: price,
@@ -69,14 +70,14 @@ class ProductManager {
   };
 
   getProductById = (codeId) => {
-    const findCode = this.products.find((v) => v.code === codeId);
+    const findCode = this.products.find((v) => v.id === codeId);
 
     if (!findCode) {
-      console.error("Not found");
+      console.error("Not found ID:",codeId);
       return;
     }
     if (findCode) {
-      return this.products.filter((v) => v.code == codeId);
+      return this.products.filter((v) => v.id == codeId);
     }
   };
 }
@@ -117,7 +118,7 @@ console.log("Lista de productos");
 console.log(productManager.getProduct());
 console.log("------------------------------------------>");
 console.log("Producto encontrado por ID");
-console.log(productManager.getProductById(3));
+console.log(productManager.getProductById(2));
 console.log("------------------------------------------>");
 console.log("Producto no encontrado");
 console.error(productManager.getProductById(4));
