@@ -14,10 +14,10 @@ class ProductManager {
       description: description,
       price: price,
       thumbnail: thumbnail,
-      code: code + 1, //autoincrementar el id de productos
+      code: code , //autoincrementar el id de productos
       stock: stock,
     };
-    const findCode = this.products.find((v) => v.code === code + 1);
+    const findCode = this.products.find((v) => v.code === code);
 
     if (!findCode) {
       this.#productValueUndefined(
@@ -32,7 +32,7 @@ class ProductManager {
     }
 
     if (findCode) {
-      console.log("No se puede repetir el codigo:", code + 1);
+      console.log("No se puede repetir el codigo:", code );
     }
   };
   #productValueUndefined = (
@@ -48,9 +48,9 @@ class ProductManager {
       title != undefined &&
       description != undefined &&
       price != undefined &&
-      thumbnail &&
-      code &&
-      stock
+      thumbnail != undefined  &&
+      code != undefined &&
+      stock != undefined 
     ) {
       this.products.push(product);
     } else {
@@ -64,7 +64,7 @@ class ProductManager {
       console.log("------------------------------------------>");
       console.log("ERROR: Deben llenarse todos los campos del producto");
       console.log(
-        `El valor faltante es: ${product.getKey(undefined).toUpperCase()}`
+        `El valor faltante es: ${product.getKey(undefined)?.toUpperCase()}`
       );
     }
   };
